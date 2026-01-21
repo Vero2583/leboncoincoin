@@ -32,7 +32,7 @@ export const create = async (name) => {
 
 // Afficher par Id
 
-export const getCategoryById = async (id) => {
+export const byid = async (id) => {
     try {
         
       const [rows] =  await db.query('SELECT * FROM categories WHERE id = ?', [id])

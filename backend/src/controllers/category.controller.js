@@ -1,4 +1,4 @@
-import { getAllCategories, create, getCategoryById, updateCategoryById,deleteById } from "../models/category.model.js";
+import { getAllCategories, create, byid, updateCategoryById, deleteById  } from "../models/category.model.js";
 import { categorySchema } from "../validations/category.validation.js"
 
 export const getCategories = async (req, res) => {
@@ -50,7 +50,7 @@ export const createCategory = async (req, res) => {
 export const getcategoryById = async (req, res) => {
   try {
     const { id } = req.params;
-    const category = await getCategoryById(id);
+    const category = await byid(id);
 
     if (!category) {
       return res.status(400).json({ message: "Aucune cateorie trouvé " });
