@@ -1,7 +1,8 @@
 import argon2 from "argon2"
 import jwt from "jsonwebtoken"
 import { findUserByEmail, createUser } from "../models/user.model.js"
-import { loginSchema, registerSchema } from "../src/validation/auth.validation.js"
+import { registerSchema, loginSchema } from "../validations/auth.validation.js";
+
 
 // inscription
 
@@ -10,7 +11,7 @@ export const register = async (req, res) => {
     const { email, password } = req.body;
     const avatar = req.file ? req.file.filename : null;
 
-    const { error } = registrationSchema.validate({ email, password });
+    const { error } = registerSchema.validate({ email, password });
     if (error) {
       return res.status(400).json({ message: error.details[0].message });
     }

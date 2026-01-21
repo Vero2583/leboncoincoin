@@ -1,4 +1,4 @@
-import db from './config/db.js'
+import db from "../config/db.js";
 
 // je vais chercher un user dans la base de donnée
 
@@ -14,6 +14,8 @@ export const findUserByEmail = async (email) => {
     throw error;
   }
 };
+
+
 
 export const createUser = async ({ email, password, avatar }) => {
   try {

@@ -6,7 +6,7 @@ import { upload } from '../middlewares/upload.middleware.js'
 
 const router = express.Router()
 
-router.post('/register', uplaod.single('avatar'), register)
+router.post('/register', upload.single('avatar'), register)
 router.post('/login', login)
 
 
