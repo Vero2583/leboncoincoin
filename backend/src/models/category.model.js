@@ -1,6 +1,6 @@
 import db from "../config/db.js"
 
-// recupere toutes les categories 
+// recupere toutes les categories : get
 
 export const getAllCategories = async () => {
     try {
@@ -16,7 +16,7 @@ export const getAllCategories = async () => {
 };
 
 
-// créer une categorie
+// créer une categorie : post
 
 export const create = async (name) => {
     try {
@@ -30,7 +30,7 @@ export const create = async (name) => {
     }
 
 
-// Afficher par Id
+// Afficher par Id : get
 
 export const byid = async (id) => {
     try {
@@ -45,7 +45,7 @@ export const byid = async (id) => {
     }
 
 
-// UPDATE une categorie_mettre à jours
+// UPDATE une categorie_mettre à jours : put
 
 export const updateCategoryById = async (id, name) => {
     try {
@@ -60,7 +60,7 @@ export const updateCategoryById = async (id, name) => {
     }
 }
 
-// supprimer une categorie
+// supprimer une categorie : delete
 
 export const deleteById = async(id) => {
     try {
