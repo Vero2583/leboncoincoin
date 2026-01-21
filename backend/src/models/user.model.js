@@ -1,5 +1,7 @@
 import db from './config/db.js'
 
+// je vais chercher un user dans la base de donnée
+
 export const findUserByEmail = async (email) => {
   try {
     const [rows] = await db.query(`SELECT * FROM users WHERE email = ?`, [

@@ -1,7 +1,9 @@
 import argon2 from "argon2"
+import jwt from "jsonwebtoken"
 import { findUserByEmail, createUser } from "../models/user.model.js"
 import { loginSchema, registerSchema } from "../src/validation/auth.validation.js"
 
+// inscription
 
 export const register = async (req, res) => {
   try {
@@ -27,6 +29,7 @@ export const register = async (req, res) => {
     res.status(500).json({ message: "erreur serveur", message: error.message });
   }
 };
+
 
 // login
 
