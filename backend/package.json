@@ -20,8 +20,11 @@
     "helmet": "^8.1.0",
     "joi": "^18.0.2",
     "jsonwebtoken": "^9.0.3",
+    "modules": "^0.4.0",
     "multer": "^2.0.2",
-    "mysql2": "^3.16.1"
+    "mysql2": "^3.16.1",
+    "node": "^25.4.0",
+    "node-modules": "^1.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.11"
