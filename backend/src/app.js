@@ -5,7 +5,7 @@ import helmet from 'helmet'
 import db from './config/db.js'
 import authRouter from './routes/auth.route.js'
 import categoriesRouter from './routes/category.route.js'
-
+import annoncesRouter from './routes/annonce.route.js'
 
 
 dotenv.config
@@ -18,6 +18,8 @@ app.use(helmet())
 
 app.use('/auth', authRouter)
 app.use('/categories', categoriesRouter)
+app.use('/annonces', annoncesRouter)
+
 
 
 
