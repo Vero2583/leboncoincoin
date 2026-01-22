@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
 // filtrage
 
 const fileFilter = (req, file, cb) => {
-    if(file.mimetype.startWish('image/')) {
+    if(file.mimetype.startsWith('image/')) {
         cb(null, true)
     } else {
         cb(new Error ('Seul les medias de type image sont autorisés'), false)

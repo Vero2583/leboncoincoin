@@ -15,13 +15,13 @@ export const getAllAnnonces = async () => {
 export const createAnnonce = async (data) => {
   try {
     await db.query(
-      "INSERT INTO annonces (title, price, city, image, user_id, category_id, create_at) VALUES (?, ?, ?, ?, ?, ?, NOW())",
+      "INSERT INTO annonces (title, price, city, image, user_id, category_id, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())",
       [
         data.title,
         data.price,
         data.city,
         data.image,
-        user_id,
+        data.user_id,
         data.category_id,
       ],
     );

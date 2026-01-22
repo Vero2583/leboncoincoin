@@ -1,7 +1,7 @@
 import express from 'express'
 import { getAnnonces } from '../controllers/annonce.controller.js'
 import { authMiddleware } from '../middlewares/auth.middleware.js'
-import { create } from 'domain'
+import { create } from '../controllers/annonce.controller.js'
 import { upload } from '../middlewares/upload.middleware.js'
 
 
