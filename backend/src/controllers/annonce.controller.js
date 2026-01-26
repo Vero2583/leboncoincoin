@@ -1,5 +1,8 @@
-import { createAnnonce, getAllAnnonces } from "../models/annonce.model.js";
+import { createAnnonce, deleteAnnonceById, getAllAnnonces, getAnnonceById, updateAnnonceById } from "../models/annonce.model.js";
 import { annonceSchema } from "../validations/annonce.validation.js";
+
+
+// récuperer les annonces
 
 export const getAnnonces = async (req, res) => {
   try {
@@ -15,6 +18,8 @@ export const getAnnonces = async (req, res) => {
     });
   }
 };
+
+// Creation d'annonces = post
 
 export const create = async (req, res) => {
   try {
@@ -49,13 +54,40 @@ export const create = async (req, res) => {
 };
 
 
-export const updateAnnonceById = async (req, res) => {
+// recuperer une annonce by id
+
+export const getById = async (req, res) => {
   try {
+    
+    const {id} = req.params;
+    const annonce = await getAnnonceById(id);
+
+    if (!annonce) {
+      return res.status(404).json({ message: 'aucune annonce trouvé'})
+    }
+
+    res.json(annonce)
+
+  } catch (error) {
+    console.error(
+      "Erreur lors de l'id des annonces coté model:",
+      error.message,
+    );
+    res.status(500).json({ message: "erreur serveur lors de la creation des annonces"});
+  }
+}
+
+// mettre à jour une annonce par id = put
+
+export const updateById = async (req, res) => {
+  try {
+
     const { id } = req.params;
     const image = req.file ? req.file.filename : undefined;
-    const existingAnnonce = await model.getAnnonceById(id);
+
+    const existingAnnonce = await getAllAnnonces(id);
     if (!existingAnnonce) {
-      return res.status(404).json({ message: "Annonce introuvable" });
+      return res.status(404).json({ message: "Annonce non trouvé" });
    }
 
     // Champs updatables
@@ -65,22 +97,44 @@ export const updateAnnonceById = async (req, res) => {
      price: req.body.price ?? existingAnnonce.price,
      city: req.body.city ?? existingAnnonce.city,
      category_id: req.body.category_id ?? existingAnnonce.category_id,
-     image: image ?? existingAnnonce.image,
+     image: image ?? existingAnnonce.image
     };
 
+    
     // validation JOI
+
     const { error } = annonceSchema.validate(updatedData);
     if (error) {
      return res.status(400).json({ message: error.details[0].message });
     }
 
-    await model.updateAnnonceById(id, updatedData);
-    res.json({ message: "Annonce mise à jour" });
+    await updateAnnonceById(id, updatedData);
+    res.json({ message: "Annonce mise à jour", updatedData});
 
   } catch (error) {
-    console.error("Erreur updateAnnonceById:", error.message);
-    res.status(500).json({ message: "Erreur serveur" });
+    console.error("Erreur serveur lors de la mise à jour des annonces by id:", error.message);
+    res.status(500).json({ message: "Erreur serveur lors de la mise à jour" });
   }
 };
 
+
+// suppression une annonce par son id = delete
+
+export const deleteById = async (req, res) => {
+  try {
+    
+    const { id } = req.params;
+
+    const deleted = await deleteAnnonceById(id)
+    if (!deleted) {
+      return res.status(404).json({ message: "aucune annonce trouvé"})
+    }
+
+    res.json({ message: "annonce supprimé avec success"})
+
+  } catch (error) {
+    console.error("Erreur serveur lors de la suppression des annonces by id:", error.message);
+    res.status(500).json({ message: "Erreur serveur lors de la suppression" });
+  }
+}
 

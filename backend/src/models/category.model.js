@@ -60,7 +60,7 @@ export const updateCategoryById = async (id, name) => {
     }
 }
 
-// supprimer une categorie : delete
+// supprimer une categorie = delete
 
 export const deleteById = async(id) => {
     try {

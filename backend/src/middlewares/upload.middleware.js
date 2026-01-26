@@ -21,7 +21,7 @@ const fileFilter = (req, file, cb) => {
     }
 }
 
-// exporter le middleware muter pret
+// exporter le middleware multer pret
 
 export const upload = multer({
     storage, fileFilter,
